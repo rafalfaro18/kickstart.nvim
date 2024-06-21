@@ -580,6 +580,7 @@ require('lazy').setup({
                 -- Optional Type Checking
                 diagnosticMode = "off",
                 typeCheckingMode = "off",
+                -- Blender Python Stubs
                 extraPaths = {os.getenv('LOCALAPPDATA') .. '\\Programs\\Python\\Python311\\Lib\\site-packages'}
               }
             }
