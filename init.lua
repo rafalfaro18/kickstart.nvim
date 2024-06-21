@@ -580,7 +580,7 @@ require('lazy').setup({
                 -- Optional Type Checking
                 diagnosticMode = "off",
                 typeCheckingMode = "off",
-                extraPaths = {'C:\\Users\\XXXXX\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages'}
+                extraPaths = {os.getenv('LOCALAPPDATA') .. '\\Programs\\Python\\Python311\\Lib\\site-packages'}
               }
             }
           }
