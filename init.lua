@@ -564,6 +564,8 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      local the_path = vim.fn.has('macunix') and '/usr/local/lib/python3.11/dist-packages' or os.getenv('LOCALAPPDATA') .. '\\Programs\\Python\\Python311\\Lib\\site-packages'
+
       local servers = {
         -- clangd = {},
         -- gopls = {},
@@ -581,7 +583,7 @@ require('lazy').setup({
                 diagnosticMode = "off",
                 typeCheckingMode = "off",
                 -- Blender Python Stubs
-                extraPaths = {os.getenv('LOCALAPPDATA') .. '\\Programs\\Python\\Python311\\Lib\\site-packages'}
+                extraPaths = {the_path}
               }
             }
           }
