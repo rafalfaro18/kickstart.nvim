@@ -564,7 +564,8 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-      local the_path = vim.fn.has('macunix') and '/usr/local/lib/python3.11/dist-packages' or os.getenv('LOCALAPPDATA') .. '\\Programs\\Python\\Python311\\Lib\\site-packages'
+      local the_path = vim.fn.has 'macunix' and '/usr/local/lib/python3.11/dist-packages'
+        or os.getenv 'LOCALAPPDATA' .. '\\Programs\\Python\\Python311\\Lib\\site-packages'
 
       local servers = {
         -- clangd = {},
@@ -580,13 +581,13 @@ require('lazy').setup({
                 -- Automatically add common search paths like 'src'.
                 autoSearchPaths = true,
                 -- Optional Type Checking
-                diagnosticMode = "off",
-                typeCheckingMode = "off",
+                diagnosticMode = 'off',
+                typeCheckingMode = 'off',
                 -- Blender Python Stubs
-                extraPaths = {the_path}
-              }
-            }
-          }
+                extraPaths = { the_path },
+              },
+            },
+          },
         },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -597,6 +598,7 @@ require('lazy').setup({
         -- But for many setups, the LSP (`tsserver`) will work just fine
         tsserver = {},
         --
+        volar = {},
 
         lua_ls = {
           -- cmd = {...},
