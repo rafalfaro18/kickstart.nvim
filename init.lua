@@ -808,6 +808,16 @@ require('lazy').setup({
           sidebars = "transparent",
           floats = "transparent",
         },
+        on_highlights = function(hl, c)
+          -- Increase line number contrast (LineNr)
+          hl.LineNr = { fg = "#565f89" } -- Darker blue/grey, adjust as needed
+      
+          -- Make comments brighter so they are visible on transparent backgrounds
+          hl.Comment = { fg = "#7982a9", italic = true }
+      
+          -- Optionally fix other low-contrast elements like split lines
+          hl.WinSeparator = { fg = c.magenta, bg = c.none }
+        end,
       }
 
       -- Load the colorscheme here.
