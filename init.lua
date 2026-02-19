@@ -810,8 +810,10 @@ require('lazy').setup({
         },
         on_highlights = function(hl, c)
           -- Increase line number contrast (LineNr)
-          hl.LineNr = { fg = "#565f89" } -- Darker blue/grey, adjust as needed
-      
+          hl.LineNr = { fg = "#565f89" }      -- Darker blue/grey, adjust as needed
+          hl.LineNrAbove = { fg = "#565f89" } -- Darker blue/grey, adjust as needed
+          hl.LineNrBelow = { fg = "#565f89" } -- Darker blue/grey, adjust as needed
+
           -- Make comments brighter so they are visible on transparent backgrounds
           hl.Comment = { fg = "#7982a9", italic = true }
       
