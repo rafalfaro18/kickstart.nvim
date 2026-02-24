@@ -810,6 +810,8 @@ require('lazy').setup({
         },
         on_highlights = function(hl, c)
           -- Increase line number contrast (LineNr)
+          hl.FloatBorder = { fg = c.blue, bg = c.none}
+          hl.NormalFloat = { bg = c.none }
           hl.LineNr = { fg = "#565f89" }      -- Darker blue/grey, adjust as needed
           hl.LineNrAbove = { fg = "#565f89" } -- Darker blue/grey, adjust as needed
           hl.LineNrBelow = { fg = "#565f89" } -- Darker blue/grey, adjust as needed
