@@ -78,4 +78,34 @@ return {
       })
     end,
   },
+
+  -- LazyGit float
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    keys = {
+      {
+        "<leader>lg",
+        function()
+          local Terminal = require("toggleterm.terminal").Terminal
+          local lazygit = Terminal:new({
+            cmd = "lazygit",
+            direction = "float",
+            float_opts = {
+              border = "rounded",
+            },
+            hidden = true,
+          })
+          lazygit:toggle()
+        end,
+        desc = "LazyGit (float)",
+      },
+    },
+    opts = {
+      direction = "float",
+      float_opts = {
+        border = "rounded",
+      },
+    },
+  }
 }
