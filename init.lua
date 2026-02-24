@@ -933,5 +933,7 @@ require('lazy').setup({
   },
 })
 
+require("lazy.core.config").options.ui.border = "rounded" -- Force LazyVim float to have borders
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
