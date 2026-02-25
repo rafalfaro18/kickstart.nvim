@@ -167,6 +167,7 @@ vim.o.confirm = true
 -- Enable folding
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldenable = true
 vim.opt.foldlevel = 99 -- Start with all folds open
 
 -- [[ Basic Keymaps ]]
