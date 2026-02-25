@@ -626,7 +626,7 @@ require('lazy').setup({
         -- You can add other tools here that you want Mason to install
       })
 
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      --require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       for name, server in pairs(servers) do
         server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
