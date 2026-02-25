@@ -164,6 +164,11 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- Enable folding
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldlevel = 99 -- Start with all folds open
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
