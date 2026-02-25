@@ -83,6 +83,7 @@ return {
   {
     "akinsho/toggleterm.nvim",
     version = "*",
+    lazy = false,
     keys = {
       {
         "<leader>lg",
