@@ -170,6 +170,8 @@ vim.wo.foldmethod = 'expr'
 -- indentation, provided by nvim-treesitter
 vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 vim.opt.foldlevel = 99 -- Start with all folds open
+-- character widht column
+vim.opt.colorcolumn = "100" -- standard is 80 but it seems too narrow to me
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
