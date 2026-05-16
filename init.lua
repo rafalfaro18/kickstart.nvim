@@ -99,7 +99,7 @@ do
   vim.g.maplocalleader = ' '
 
   -- Set to true if you have a Nerd Font installed and selected in the terminal
-  vim.g.have_nerd_font = false
+  vim.g.have_nerd_font = true
 
   -- [[ Setting options ]]
   --  See `:help vim.o`
@@ -375,6 +375,9 @@ do
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } }, -- Enable gitsigns recommended keymaps first
       { 'gr', group = 'LSP Actions', mode = { 'n' } },
     },
+    win = {
+      border = "rounded"
+    }
   }
 
   -- [[ Colorscheme ]]
@@ -388,7 +391,24 @@ do
   require('tokyonight').setup {
     styles = {
       comments = { italic = false }, -- Disable italics in comments
+      sidebars = "transparent",
+      floats = "transparent"
     },
+    transparent = true,
+    on_highlights = function(hl, c)
+      -- Increase line number contrast (LineNr)
+      hl.FloatBorder = { fg = c.blue, bg = c.none }
+      hl.NormalFloat = { bg = c.none }
+      hl.LineNr = { fg = "#565f89" }      -- Darker blue/grey, adjust as needed
+      hl.LineNrAbove = { fg = "#565f89" } -- Darker blue/grey, adjust as needed
+      hl.LineNrBelow = { fg = "#565f89" } -- Darker blue/grey, adjust as needed
+
+      -- Make comments brighter so they are visible on transparent backgrounds
+      hl.Comment = { fg = "#7982a9", italic = true }
+
+      -- Optionally fix other low-contrast elements like split lines
+      hl.WinSeparator = { fg = c.magenta, bg = c.none }
+    end,
   }
 
   -- Load the colorscheme here.
@@ -688,14 +708,14 @@ do
   local servers = {
     -- clangd = {},
     -- gopls = {},
-    -- pyright = {},
-    -- rust_analyzer = {},
+    pyright = {},
+    rust_analyzer = {},
     --
     -- Some languages (like typescript) have entire language plugins that can be useful:
     --    https://github.com/pmizio/typescript-tools.nvim
     --
     -- But for many setups, the LSP (`ts_ls`) will work just fine
-    -- ts_ls = {},
+    ts_ls = {},
 
     stylua = {}, -- Used to format Lua code
 
@@ -911,8 +931,9 @@ do
 
     -- Enable treesitter based folds
     -- For more info on folds see `:help folds`
-    -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-    -- vim.wo.foldmethod = 'expr'
+    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    vim.wo.foldmethod = 'expr'
+    vim.opt.foldlevel = 99 -- Start with all folds open
 
     -- Check if treesitter indentation is available for this language, and if so enable it
     -- in case there is no indent query, the indentexpr will fallback to the vim's built in one
@@ -961,16 +982,16 @@ do
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug'
-  -- require 'kickstart.plugins.indent_line'
+  require 'kickstart.plugins.indent_line'
   -- require 'kickstart.plugins.lint'
-  -- require 'kickstart.plugins.autopairs'
-  -- require 'kickstart.plugins.neo-tree'
-  -- require 'kickstart.plugins.gitsigns' -- adds gitsigns recommended keymaps
+  require 'kickstart.plugins.autopairs'
+  require 'kickstart.plugins.neo-tree'
+  require 'kickstart.plugins.gitsigns' -- adds gitsigns recommended keymaps
 
   -- NOTE: You can add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- require 'custom.plugins'
+  require 'custom.plugins'
 end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
