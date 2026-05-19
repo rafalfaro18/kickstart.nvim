@@ -12,3 +12,9 @@ vim.opt.softtabstop = 4  -- Number of spaces a <Tab> counts for while performing
 -- 0.12+ Sets the default border for all floating windows: LSP hover, signature help, diagnostics floats, everything.
 vim.opt.winborder = "rounded"
 
+-- For buffers to auto-reload after a file is written. Recommended by Cannon07/code-preview.nvim docs.
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+  command = "checktime",
+})
+
