@@ -13,8 +13,12 @@ vim.opt.softtabstop = 4  -- Number of spaces a <Tab> counts for while performing
 vim.opt.winborder = "rounded"
 
 -- For buffers to auto-reload after a file is written. Recommended by Cannon07/code-preview.nvim docs.
+-- Automatically read a file changed outside of Neovim
 vim.o.autoread = true
-vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+
+-- Trigger checktime on various events to reload buffers out of focus
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  pattern = "*",
   command = "checktime",
 })
 
