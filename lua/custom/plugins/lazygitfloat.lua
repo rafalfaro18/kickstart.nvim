@@ -28,3 +28,21 @@ vim.api.nvim_set_keymap("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", {
   desc = "LazyGit (float)"
 })
 
+local lazydocker = Terminal:new({
+  cmd = "lazydocker",
+  hidden = true,
+  direction = "float",
+  float_opts = {
+    border = "rounded"
+  }
+})
+
+function _lazydocker_toggle()
+  lazydocker:toggle()
+end
+
+vim.api.nvim_set_keymap("n", "<leader>ld", "<cmd>lua _lazydocker_toggle()<CR>", {
+  noremap = true,
+  silent = true,
+  desc = "LazyDocker (float)"
+})
