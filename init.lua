@@ -752,6 +752,8 @@ do
         },
       },
     },
+
+    yamlls = {},
   }
 
   vim.pack.add {
