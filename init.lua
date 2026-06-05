@@ -755,6 +755,7 @@ do
 
     yamlls = {},
     terraformls = {},
+    docker_language_server = {},
   }
 
   vim.pack.add {
