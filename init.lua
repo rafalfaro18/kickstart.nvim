@@ -757,6 +757,7 @@ do
     terraformls = {},
     docker_language_server = {},
     taplo = {},
+    eslint = {},
   }
 
   vim.pack.add {
