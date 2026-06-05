@@ -754,6 +754,7 @@ do
     },
 
     yamlls = {},
+    terraformls = {},
   }
 
   vim.pack.add {
