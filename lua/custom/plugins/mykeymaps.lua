@@ -14,3 +14,20 @@ vim.keymap.set('n', '<leader>mf', function()
     apply = true,
   })
 end, { desc = "LSP Move to new file" })
+
+vim.keymap.set('n', '<leader>gh', function()
+  require('telescope.builtin').live_grep({
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '--hidden', 
+      '--glob=!.git/',   -- Excludes the internal Git data directory
+      '--glob=!.git*',   -- Excludes .gitattributes, .gitignore, .gitmodules, etc.
+    },
+  })
+end, { desc = 'Live grep including hidden (excludes git files & .git/)' })
