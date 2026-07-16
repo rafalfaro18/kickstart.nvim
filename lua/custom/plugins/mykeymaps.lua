@@ -31,3 +31,6 @@ vim.keymap.set('n', '<leader>gh', function()
     },
   })
 end, { desc = 'Live grep including hidden (excludes git files & .git/)' })
+
+vim.keymap.set('n', '<leader>dh', function() require('dap.ui.widgets').hover() end, { desc = 'Debug: Hover Variable' })
+vim.keymap.set({'n', 'v'}, '<leader>de', function() require('dapui').eval() end, { desc = 'Debug: Evaluate Under Cursor' })
