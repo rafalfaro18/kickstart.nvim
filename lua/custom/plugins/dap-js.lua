@@ -24,19 +24,31 @@ dap.adapters["pwa-chrome"] = {
   },
 }
 
--- 3. Define Configurations for JS/TS Filetypes
+-- 3. Define Configurations for JS/TS/JSX/TSX Filetypes
 local js_filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" }
 
 for _, language in ipairs(js_filetypes) do
   dap.configurations[language] = {
-    -- FRONTEND: Debug React/Vite/Next apps running in Google Chrome
+    -- NEXT.JS / FULL-STACK: Launches your dev server and attaches instantly.
+    -- Use this to catch breakpoints inside Server Components (like app/page.tsx).
+    {
+      type = "pwa-node",
+      request = "launch",
+      name = "Next.js: Debug Server-Side / Full-Stack",
+      runtimeExecutable = "npm",
+      runtimeArgs = { "run", "dev" },
+      cwd = "${workspaceFolder}",
+      autoAttachChildProcesses = true,
+      console = "integratedTerminal",
+      sourceMaps = true,
+    },
+    -- FRONTEND CLIENT: For debugging Client Components ("use client") or standard React SPAs.
     {
       type = "pwa-chrome",
       request = "launch",
-      name = "Launch Chrome (React Port 3000)",
+      name = "Launch Chrome (Client Side Only)",
       url = "http://localhost:3000",
       webRoot = "${workspaceFolder}",
-      -- Google Chrome is the native fallback; no manual path helpers needed
       userDataDir = "${workspaceFolder}/.vscode/pwa-chrome-profile", 
       sourceMaps = true,
       protocol = "inspector",
@@ -44,8 +56,13 @@ for _, language in ipairs(js_filetypes) do
         "${workspaceFolder}/**",
         "!**/node_modules/**",
       },
+      sourceMapPathOverrides = {
+        ["webpack://_N_E/*"] = "${workspaceFolder}/*",
+        ["webpack:///./*"] = "${workspaceFolder}/*",
+        ["turbopack://[project]/*"] = "${workspaceFolder}/*",
+      },
     },
-    -- BACKEND: Launch a single file directly with Node
+    -- STANDALONE BACKEND: Launch a single file directly with Node
     {
       type = "pwa-node",
       request = "launch",
@@ -53,7 +70,7 @@ for _, language in ipairs(js_filetypes) do
       program = "${file}",
       cwd = "${workspaceFolder}",
     },
-    -- BACKEND: Attach to an already running Node process (via --inspect)
+    -- BACKEND ATTACH: Attach to an already running Node process (via --inspect)
     {
       type = "pwa-node",
       request = "attach",
