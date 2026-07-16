@@ -14,38 +14,26 @@ dap.adapters["pwa-node"] = {
   },
 }
 
--- 2. Define configurations for Next.js (JS/TS)
-for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
+local js_filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" }
+
+for _, language in ipairs(js_filetypes) do
   dap.configurations[language] = {
-    -- Profile A: Server-Side (API Routes, SSR)
-    -- Start the app like this: NODE_OPTIONS='--inspect' npm run dev
-    {
-      type = "pwa-node",
-      request = "attach",
-      name = "Next.js: Attach to Server Side",
-      processId = require("dap.utils").pick_process,
-      cwd = "${workspaceFolder}",
-      sourceMaps = true,
-      -- ADD THIS FIELD TO SKIP VOLTA/NPM/NODE INTERNAL SCRIPTS:
-      skipFiles = {
-        "<node_internals>/**",
-        "**/node_modules/**",
-        "**/@volta/**",
-      },
-    },
-    -- Profile B: Client-Side (Browser Components)
+    -- 1. Launch the current file locally
     {
       type = "pwa-node",
       request = "launch",
-      name = "Next.js: Debug Client Side (Chrome)",
-      url = "http://localhost:3000",
-      webRoot = "${workspaceFolder}",
-      sourceMaps = true,
-      -- ADD THIS FIELD TO SKIP BROWSER/NODE INTERNAL SCRIPTS:
-      skipFiles = {
-        "<node_internals>/**",
-        "**/node_modules/**",
-      },
-    }
+      name = "Launch Current File",
+      program = "${file}",
+      cwd = "${workspaceFolder}",
+    },
+    -- 2. Attach to an external running process (e.g., dev servers)
+    {
+      type = "pwa-node",
+      request = "attach",
+      name = "Attach to Process",
+      processId = require("dap.utils").pick_process,
+      cwd = "${workspaceFolder}",
+    },
   }
 end
+
