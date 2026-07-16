@@ -79,6 +79,10 @@
       "rev": "cc9dd33aade7f20bae414d0cba163bc60d4d4b43",
       "src": "https://github.com/rcarriga/nvim-dap-ui"
     },
+    "nvim-dap-vscode-js": {
+      "rev": "03bd29672d7fab5e515fc8469b7d07cc5994bbf6",
+      "src": "https://github.com/mxsdev/nvim-dap-vscode-js"
+    },
     "nvim-lspconfig": {
       "rev": "d224a1920728ba129880efc700d4a0180ac4ecbb",
       "src": "https://github.com/neovim/nvim-lspconfig"
