@@ -90,3 +90,18 @@ for _, language in ipairs(js_filetypes) do
     },
   }
 end
+
+-- Keeps your global <F5> completely untouched.
+-- Run this keymap once when you open a project to load its configuration variables.
+vim.keymap.set("n", "<leader>dl", function()
+  if vim.fn.filereadable(".vscode/launch.json") == 1 then
+    require("dap.ext.vscode").type_to_filetypes = {
+      ["pwa-node"] = js_filetypes,
+      ["pwa-chrome"] = js_filetypes,
+      ["node"] = js_filetypes,
+    }
+    print("VSCode launch.json targets mapped successfully!")
+  else
+    print("No .vscode/launch.json found in this workspace.")
+  end
+end, { desc = "DAP Map Workspace launch.json Targets" })
