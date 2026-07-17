@@ -43,24 +43,15 @@ for _, language in ipairs(js_filetypes) do
       sourceMaps = true,
     },
     -- FRONTEND CLIENT: For debugging Client Components ("use client") or standard React SPAs.
+    -- Requires chrome locally installed inside WSL so it gets started with WSLg
     {
       type = "pwa-chrome",
       request = "launch",
-      name = "Launch Chrome (Client Side Only)",
+      name = "Launch Chrome (Client Side Only) localhost:3000",
       url = "http://localhost:3000",
       webRoot = "${workspaceFolder}",
-      userDataDir = "${workspaceFolder}/.vscode/pwa-chrome-profile",
       sourceMaps = true,
-      protocol = "inspector",
-      resolveSourceMapLocations = {
-        "${workspaceFolder}/**",
-        "!**/node_modules/**",
-      },
-      sourceMapPathOverrides = {
-        ["webpack://_N_E/*"] = "${workspaceFolder}/*",
-        ["webpack:///./*"] = "${workspaceFolder}/*",
-        ["turbopack://[project]/*"] = "${workspaceFolder}/*",
-      },
+
     },
     -- STANDALONE BACKEND: Launch a single file directly with Node
     {
