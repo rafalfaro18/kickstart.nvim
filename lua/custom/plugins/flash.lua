@@ -23,3 +23,23 @@ end, { desc = "Treesitter Search" })
 set_map({ "c" }, "<c-s>", function()
   require("flash").toggle()
 end, { desc = "Toggle Flash Search" })
+
+local statusline = require('mini.statusline')
+local orig_section_mode = statusline.section_mode
+
+---@diagnostic disable-next-line: duplicate-set-field
+statusline.section_mode = function(args)
+  local m = vim.fn.mode(1)
+  if m:sub(1, 2) == 'no' then
+    return 'OP', 'MiniStatuslineModeOther'
+  end
+  return orig_section_mode(args)
+end
+
+vim.api.nvim_create_autocmd('ModeChanged', {
+  pattern = { '*:*' },
+  group = vim.api.nvim_create_augroup('MiniStatuslineOPRedraw', { clear = true }),
+  callback = function()
+    vim.cmd('redrawstatus')
+  end,
+})
