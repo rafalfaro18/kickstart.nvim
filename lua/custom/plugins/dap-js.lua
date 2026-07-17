@@ -49,7 +49,7 @@ for _, language in ipairs(js_filetypes) do
       name = "Launch Chrome (Client Side Only)",
       url = "http://localhost:3000",
       webRoot = "${workspaceFolder}",
-      userDataDir = "${workspaceFolder}/.vscode/pwa-chrome-profile", 
+      userDataDir = "${workspaceFolder}/.vscode/pwa-chrome-profile",
       sourceMaps = true,
       protocol = "inspector",
       resolveSourceMapLocations = {
@@ -70,12 +70,22 @@ for _, language in ipairs(js_filetypes) do
       program = "${file}",
       cwd = "${workspaceFolder}",
     },
-    -- BACKEND ATTACH: Attach to an already running Node process (via --inspect)
+    -- BACKEND ATTACH: Attach to an already running Node process (via --inspect or --inspect-brk)
     {
       type = "pwa-node",
       request = "attach",
       name = "Attach to Node Process",
       processId = require("dap.utils").pick_process,
+      cwd = "${workspaceFolder}",
+    },
+    -- DEFAULT NODE DEBUGGING PORT: node --inspect app.js
+    -- OR FORCE PAUSING THE APP AT START: node --inspect-brk app.js
+    {
+      type = "pwa-node",
+      request = "attach",
+      name = "Attach to Port 9229",
+      address = "localhost",
+      port = 9229,
       cwd = "${workspaceFolder}",
     },
   }
