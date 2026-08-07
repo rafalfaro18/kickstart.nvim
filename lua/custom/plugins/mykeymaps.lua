@@ -36,6 +36,7 @@ vim.keymap.set('n', '<leader>dh', function() require('dap.ui.widgets').hover() e
 vim.keymap.set({'n', 'v'}, '<leader>de', function() require('dapui').eval() end, { desc = 'Debug: Evaluate Under Cursor' })
 -- Sync scroll: set on both windows first then scroll
 vim.keymap.set("n", "<leader>sb", function()
-    vim.opt.scrollbind = not vim.v.option_type == "global" and not vim.opt.scrollbind:get()
+    -- Parentheses ensure the equality check happens before the "not" operator
+    vim.opt.scrollbind = not (vim.v.option_type == "global") and not vim.opt.scrollbind:get()
     print("Scrollbind: " .. tostring(vim.opt.scrollbind:get()))
 end, { desc = "Toggle scrollbind (sync) for current window" })
