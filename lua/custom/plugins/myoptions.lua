@@ -1,7 +1,7 @@
 vim.o.relativenumber = true
 
 -- character widht column
-vim.opt.colorcolumn = "80" -- the standard. Good for livestreaming / recording with OpenDyslexic nerd font mono size 13
+vim.opt.colorcolumn = "80" -- the standard. Good for livestreaming / recording 
 
 -- Tab options might conflict with lsp indentantion, golang might need custom settings to use tabs specifically disabling expandtab
 vim.opt.tabstop = 4      -- Number of spaces a <Tab> in the file counts for
