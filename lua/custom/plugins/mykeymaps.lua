@@ -40,3 +40,11 @@ vim.keymap.set("n", "<leader>sb", function()
     vim.opt.scrollbind = not (vim.v.option_type == "global") and not vim.opt.scrollbind:get()
     print("Scrollbind: " .. tostring(vim.opt.scrollbind:get()))
 end, { desc = "Toggle scrollbind (sync) for current window" })
+
+vim.keymap.set('n', '<leader>td', function()
+  -- Check if virtual_text is currently active
+  local current = vim.diagnostic.config().virtual_text
+  
+  -- Flip the setting to the opposite of whatever it is right now
+  vim.diagnostic.config({ virtual_text = not current })
+end, { desc = '[T]oggle Inline [D]iagnostics' })
