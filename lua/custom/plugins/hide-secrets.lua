@@ -3,7 +3,7 @@ vim.pack.add { 'https://github.com/Gentleman-Programming/veil.nvim' }
 
 require("veil").setup({
   extra_files = {
-    "*.md",
+    "*.md", -- causes markdown to conceallevel=2 toggle veil off to see raw .md
   },
   -- Add extra patterns - simple keywords or full patterns
   extra_patterns = {
