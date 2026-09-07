@@ -112,6 +112,10 @@
       "rev": "5f032a85be210cd1c6ac98861eb3b187ff3bd5eb",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
+    "nvim-wpm": {
+      "rev": "578b80115917697f75d31b89c09e6b66e6d4364d",
+      "src": "https://github.com/iliailmer/nvim-wpm"
+    },
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
